@@ -165,10 +165,16 @@ public class Edit_Delete extends javax.swing.JFrame {
                        Statement mystatement=myconnect.createStatement();
                        String s,q;
                        s=Field2.getText();
+                       if(s.equals(""))
+                      {
+                        JOptionPane.showMessageDialog(this, "Enter valid roll Number");
+                      }
+                     else
+                      {
                        q="delete from student where roll_number= '"+s+"'";
                       mystatement.executeUpdate(q);
                        JOptionPane.showMessageDialog(this,s+" Deleted successfully");
-                    
+                    }
              }
       
          catch (SQLException ex) {

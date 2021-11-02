@@ -4,8 +4,6 @@
  */
 package com.mycompany.placement_database;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -126,15 +124,28 @@ public class Add_company extends javax.swing.JFrame {
        Connection myconnect;
         try {
             myconnect = DriverManager.getConnection(dburl, uname, pass);
-            JOptionPane.showMessageDialog(this,"DataBase connected!!!");
             Statement mystatement=myconnect.createStatement();
              String a,b,c,d;
                 a= Field1.getText();
                 b=Field2.getText();
                 c=Field3.getText();
-                d="insert into company values('"+a+"',"+b+","+c+")";
+              int value=0;
+                if(a.equals(""))
+              {
+               JOptionPane.showMessageDialog(this,"Company name can't be NULL");    value=1;
+              }
+                if(b.equals(""))
+              {
+               JOptionPane.showMessageDialog(this,"Seats can't be NULL");   value=1;
+              }
+                if(c.equals(""))
+              {
+               JOptionPane.showMessageDialog(this,"Percentage can't be NULL");   value=1;
+              }
+              if(value==0){
+                 d="insert into company values('"+a+"',"+b+","+c+")";
                 mystatement.executeUpdate(d);
-       JOptionPane.showMessageDialog(this,"Company added successfully");
+             JOptionPane.showMessageDialog(this,"Company added successfully");}
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

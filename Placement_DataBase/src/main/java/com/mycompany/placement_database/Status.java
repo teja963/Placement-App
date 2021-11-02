@@ -97,7 +97,7 @@ public class Status extends javax.swing.JFrame {
             Statement mystatement=myconnect.createStatement();
             String a,c;
             a=Field1.getText();
-            c="update student set placement_status= 'Placed '"+"where roll_number =' "+a+"' ";
+            c="update student set placement_status= 'Placed'"+" where roll_number =' "+a+"' ";
             mystatement.executeUpdate(c);
             JOptionPane.showMessageDialog(this," Placement status Updated successfully!!");
 

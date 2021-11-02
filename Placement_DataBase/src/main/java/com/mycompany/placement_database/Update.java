@@ -119,7 +119,7 @@ public class Update extends javax.swing.JFrame {
                     String a,b,c;
                     a=Field1.getText();
                     b=Field2.getText();
-                    c="update student set phone="+b+"where phone =' "+a+"' ";
+                    c="update student set phone=' "+b+"'"+" where phone =' "+a+"'";
                     mystatement.executeUpdate(c);
                     JOptionPane.showMessageDialog(this," Phone Number Updated successfully!!");
                     
@@ -151,7 +151,7 @@ public class Update extends javax.swing.JFrame {
                     String a,b,c;
                     a= Field1.getText();
                     b= Field2.getText();
-                    c="update student set cgpa="+b+"where roll_number =' "+a+"' ";
+                    c="update student set cgpa="+b+" where roll_number =' "+a+"' ";
                     mystatement.executeUpdate(c);
                     JOptionPane.showMessageDialog(this," CGPA Updated successfully!!");
                     

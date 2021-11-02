@@ -6,7 +6,6 @@ package com.mycompany.placement_database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -180,36 +179,43 @@ public class Add_Student extends javax.swing.JFrame {
                 d=Field4.getText();
                e=Field5.getText();
                f=Field6.getText();
-           float cg=Float.parseFloat(e);
+              int value=0;
+          
                if(a.equals(""))
             {
-                    JOptionPane.showMessageDialog(this, "Name can't be NULL");
+                    JOptionPane.showMessageDialog(this, "Name can't be NULL");  value=1;
             }
-             else if(b.length()!=9||b.equals(""))
+             if(b.length()!=9||b.equals(""))
             {
-                    JOptionPane.showMessageDialog(this, "Enter a valid Roll number");
+                    JOptionPane.showMessageDialog(this, "Enter a valid Roll number"); value=1;
             }
-             else if(c.equals(""))
+             if(c.equals(""))
             {
-                     JOptionPane.showMessageDialog(this, "Email can't be NULL");
+                     JOptionPane.showMessageDialog(this, "Email can't be NULL"); value=1;
             }
-             else if(d.equals("")||d.length()!=10)
+             if(d.equals("")||d.length()!=10)
             {
-                     JOptionPane.showMessageDialog(this, "Phone number should be valid");
+                     JOptionPane.showMessageDialog(this, "Phone number should be valid"); value=1;
             }
-             else if(e.equals("")||cg<0.00&&cg>10.00)
+             if(e.equals(""))
             {
-                     JOptionPane.showMessageDialog(this, "Enter a valid CGPA");
+                     JOptionPane.showMessageDialog(this, "Enter a valid CGPA"); value=1;
             }
-             else if(f.equals(""))
+            if(0<=e.length())
+              {
+                float cg=Float.parseFloat(e);
+                if(cg<0.00||cg>10.00){JOptionPane.showMessageDialog(this, "Enter a valid CGPA"); value=1;}
+               
+              }
+             if(f.equals(""))
             {
-                     JOptionPane.showMessageDialog(this, "Status can't be NULL");
+                     JOptionPane.showMessageDialog(this, "Status can't be NULL"); value=1;
             }
-            else{
-            
+
+            if(value==0){
                 g="insert into student values('"+a+"',"+"'"+b+"',"+"'"+c+" ',"+" ' "+d+" ',"+e+","+"'" +f+ "'"+")";
                 mystatement.executeUpdate(g);
-       JOptionPane.showMessageDialog(this,"Student record added successfully");}
+               JOptionPane.showMessageDialog(this,"Student record added successfully");}
         } catch (Exception e) {
              throw new RuntimeException(e);
         }  
