@@ -157,14 +157,22 @@ public class Add_Student extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       try{
-         Class.forName ("com.mysql.cj.jdbc.Driver");
-       String dburl="jdbc:mysql://localhost:3306/campus";
-       String uname="root";
-       String pass="root";
-       //1. get a connection
-       Connection myconnect = DriverManager.getConnection(dburl, uname, pass);
-            Statement mystatement=myconnect.createStatement();
+          try{
+                Class.forName ("com.mysql.cj.jdbc.Driver");
+               }
+              catch(ClassNotFoundException e)
+             {
+              throw new RuntimeException(e);
+              }
+                  
+
+        try{
+          String dburl="jdbc:mysql://localhost:3306/campus";
+          String uname="root";
+          String pass="root";
+          //1. get a connection
+          Connection myconnect = DriverManager.getConnection(dburl, uname, pass);
+               Statement mystatement=myconnect.createStatement();
              String a,b,c,d,e,f,g;
                 a= Field1.getText();
                 b=Field2.getText();
@@ -203,7 +211,7 @@ public class Add_Student extends javax.swing.JFrame {
                 mystatement.executeUpdate(g);
        JOptionPane.showMessageDialog(this,"Student record added successfully");}
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+             throw new RuntimeException(e);
         }  
          
     }//GEN-LAST:event_jButton1ActionPerformed
