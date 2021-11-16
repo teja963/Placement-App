@@ -41,8 +41,6 @@ public class Add_Student extends javax.swing.JFrame {
         Field4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Field5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        Field6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -50,17 +48,13 @@ public class Add_Student extends javax.swing.JFrame {
 
         jLabel1.setText("Name");
 
-        jLabel2.setText("Roll Number");
+        jLabel2.setText("Age");
 
-        jLabel3.setText("Email");
+        jLabel3.setText("Gender");
 
-        jLabel4.setText("Phone");
+        jLabel4.setText("Address");
 
-        jLabel5.setText("CGPA");
-
-        jLabel6.setText("Placement Status");
-
-        Field6.setText("Not Placed");
+        jLabel5.setText("Health Condition");
 
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,10 +79,6 @@ public class Add_Student extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(152, 152, 152)
-                                .addComponent(Field6, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(152, 152, 152)
@@ -140,11 +130,7 @@ public class Add_Student extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Field5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Field6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -166,7 +152,7 @@ public class Add_Student extends javax.swing.JFrame {
                   
 
         try{
-          String dburl="jdbc:mysql://localhost:3306/campus";
+          String dburl="jdbc:mysql://localhost:3306/hp";
           String uname="root";
           String pass="root";
           //1. get a connection
@@ -178,42 +164,31 @@ public class Add_Student extends javax.swing.JFrame {
                 c=Field3.getText();
                 d=Field4.getText();
                e=Field5.getText();
-               f=Field6.getText();
               int value=0;
           
                if(a.equals(""))
             {
                     JOptionPane.showMessageDialog(this, "Name can't be NULL");  value=1;
             }
-             if(b.length()!=9||b.equals(""))
+             if(b.equals(""))
             {
-                    JOptionPane.showMessageDialog(this, "Enter a valid Roll number"); value=1;
+                    JOptionPane.showMessageDialog(this, "Enter a valid age"); value=1;
             }
              if(c.equals(""))
             {
-                     JOptionPane.showMessageDialog(this, "Email can't be NULL"); value=1;
+                     JOptionPane.showMessageDialog(this, "Gender can't be NULL"); value=1;
             }
-             if(d.equals("")||d.length()!=10)
+             if(d.equals(""))
             {
-                     JOptionPane.showMessageDialog(this, "Phone number should be valid"); value=1;
+                     JOptionPane.showMessageDialog(this, "Address should be valid"); value=1;
             }
              if(e.equals(""))
             {
-                     JOptionPane.showMessageDialog(this, "Enter a valid CGPA"); value=1;
-            }
-            if(0<=e.length())
-              {
-                float cg=Float.parseFloat(e);
-                if(cg<0.00||cg>10.00){JOptionPane.showMessageDialog(this, "Enter a valid CGPA"); value=1;}
-               
-              }
-             if(f.equals(""))
-            {
-                     JOptionPane.showMessageDialog(this, "Status can't be NULL"); value=1;
+                     JOptionPane.showMessageDialog(this, "Health Conidtion can't be NULL"); value=1;
             }
 
             if(value==0){
-                g="insert into student values('"+a+"',"+"'"+b+"',"+"'"+c+" ',"+" ' "+d+" ',"+e+","+"'" +f+ "'"+")";
+                g="insert into data values('"+a+"',"+b+","+"'"+c+" ',"+" ' "+d+" ',"+" '"+e+"'"+")";
                 mystatement.executeUpdate(g);
                JOptionPane.showMessageDialog(this,"Student record added successfully");}
         } catch (Exception e) {
@@ -229,7 +204,6 @@ public class Add_Student extends javax.swing.JFrame {
             Field3.setText("");
             Field4.setText("");
             Field5.setText("");
-            Field6.setText("Not Placed");
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -274,7 +248,6 @@ public class Add_Student extends javax.swing.JFrame {
     private javax.swing.JTextField Field3;
     private javax.swing.JTextField Field4;
     private javax.swing.JTextField Field5;
-    private javax.swing.JTextField Field6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -282,6 +255,5 @@ public class Add_Student extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

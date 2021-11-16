@@ -41,18 +41,18 @@ public class Update extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Enter  the Roll Number");
+        jLabel1.setText("Enter patient name");
 
-        jLabel2.setText("Value");
+        jLabel2.setText("age");
 
-        jButton1.setText("CGPA");
+        jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Phone Number");
+        jButton2.setText("clear");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -81,11 +81,15 @@ public class Update extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Field1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(Field1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Field2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -101,33 +105,8 @@ public class Update extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         try{
-                Class.forName ("com.mysql.cj.jdbc.Driver");
-               }
-              catch(ClassNotFoundException e)
-             {
-              throw new RuntimeException(e);
-              }
-                  
-          try{
-                  String dburl="jdbc:mysql://localhost:3306/campus";
-                  String uname="root";
-                  String pass="root";
-                  //1. get a connection
-                    Connection myconnect = DriverManager.getConnection(dburl, uname, pass);
-                    Statement mystatement=myconnect.createStatement();
-                    String a,b,c;
-                    a=Field1.getText();
-                    b=Field2.getText();
-                    c="update student set phone=' "+b+"'"+" where phone =' "+a+"'";
-                    mystatement.executeUpdate(c);
-                    JOptionPane.showMessageDialog(this," Phone Number Updated successfully!!");
-                    
-             }
-      
-            catch (SQLException ex) {
-               throw new RuntimeException(ex);
-           }
+         Field1.setText("");
+         Field2.setText("");
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -142,7 +121,7 @@ public class Update extends javax.swing.JFrame {
               }
                   
           try{
-                  String dburl="jdbc:mysql://localhost:3306/campus";
+                  String dburl="jdbc:mysql://localhost:3306/hp";
                   String uname="root";
                   String pass="root";
                   //1. get a connection
@@ -151,9 +130,9 @@ public class Update extends javax.swing.JFrame {
                     String a,b,c;
                     a= Field1.getText();
                     b= Field2.getText();
-                    c="update student set cgpa="+b+" where roll_number =' "+a+"' ";
+                    c="update data set age="+b+" where name =' "+a+"' ";
                     mystatement.executeUpdate(c);
-                    JOptionPane.showMessageDialog(this," CGPA Updated successfully!!");
+                    JOptionPane.showMessageDialog(this," Updated successfully!!");
                     
              }
       
